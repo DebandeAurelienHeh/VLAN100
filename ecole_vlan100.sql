@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 18, 2024 at 10:37 AM
+-- Generation Time: Dec 18, 2024 at 12:49 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -115,7 +115,7 @@ CREATE TABLE `plannings_globaux` (
   `id_planning` int NOT NULL,
   `id_cours` int NOT NULL,
   `departement` varchar(100) DEFAULT NULL,
-  `horaire` date DEFAULT NULL
+  `horaire` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
