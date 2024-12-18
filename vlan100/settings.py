@@ -78,10 +78,18 @@ WSGI_APPLICATION = 'vlan100.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'enseignant',
-        'USER': 'admins',
-        'PASSWORD': 'EvangelionEVA-01++',
-        "HOST": '10.10.213.3',
+        'NAME': 'db_global',
+        'USER': 'user_global',
+        'PASSWORD': 'password_global',
+        'HOST': '10.10.',
+        'PORT': '3306',
+    },
+    'local1': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_local1',
+        'USER': 'user_local1',
+        'PASSWORD': 'password_local1',
+        'HOST': 'mysql_local1',
         'PORT': '3306',
     }
 }

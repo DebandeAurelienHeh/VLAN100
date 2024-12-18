@@ -3,9 +3,15 @@
 Ici seront faites nos API
 """
 from rest_framework import viewsets
-
-from .serializers import *
-
+from .models import (
+    Etudiant, Professeur, SalleGlobale, CoursGlobal, Absence, NoteGlobale,
+    IncidentsGlobaux, InscriptionGlobale, PlanningGlobal
+)
+from .serializers import (
+    EtudiantSerializer, ProfesseurSerializer, SalleGlobaleSerializer,
+    CoursGlobalSerializer, AbsenceSerializer, NoteGlobaleSerializer,
+    IncidentsGlobauxSerializer, InscriptionGlobaleSerializer, PlanningGlobalSerializer
+)
 
 class EtudiantViewSet(viewsets.ModelViewSet):
     queryset = Etudiant.objects.all()
@@ -31,5 +37,14 @@ class NoteGlobaleViewSet(viewsets.ModelViewSet):
     queryset = NoteGlobale.objects.all()
     serializer_class = NoteGlobaleSerializer
 
-class IncdientGlobaux(viewsets.ModelViewSet):
-    pass
+class IncidentsGlobauxViewSet(viewsets.ModelViewSet):
+    queryset = IncidentsGlobaux.objects.all()
+    serializer_class = IncidentsGlobauxSerializer
+
+class InscriptionGlobaleViewSet(viewsets.ModelViewSet):
+    queryset = InscriptionGlobale.objects.all()
+    serializer_class = InscriptionGlobaleSerializer
+
+class PlanningGlobalViewSet(viewsets.ModelViewSet):
+    queryset = PlanningGlobal.objects.all()
+    serializer_class = PlanningGlobalSerializer
