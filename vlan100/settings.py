@@ -77,12 +77,12 @@ WSGI_APPLICATION = 'vlan100.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',   # Utilisez le moteur MySQL
-        'NAME': 'enseignant',            # Remplacez par le nom de votre base de données MySQL
-        'USER': 'admins',            # Remplacez par votre nom d'utilisateur MySQL
-        'PASSWORD': 'EvangelionEVA-01++',       # Votre mot de passe MySQL
-        "HOST": '10.10.213.3',             # Adresse IP de votre serveur MySQL
-        'PORT': '3306',                         # Port par défaut pour MySQL
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'enseignant',
+        'USER': 'admins',
+        'PASSWORD': 'EvangelionEVA-01++',
+        "HOST": '10.10.213.3',
+        'PORT': '3306',
     }
 }
 

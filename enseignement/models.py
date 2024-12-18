@@ -13,6 +13,9 @@ class Etudiant(models.Model):
     def __str__(self):
         return f"{self.nom} {self.prenom}"
 
+#Modèle pour les notes de attribuées pour les profs
+
+
 # Modèle pour les professeurs
 class Professeur(models.Model):
     id_professeur = models.AutoField(primary_key=True)
@@ -25,6 +28,13 @@ class Professeur(models.Model):
 
     def __str__(self):
         return f"{self.nom} {self.prenom}"
+
+
+class Professeurs_notes(models.Model):
+    id_professeurs_notes = models.AutoField(primary_key=True)
+    id_professeur = models.ForeignKey(Professeur, on_delete=models.CASCADE)
+
+
 
 # Modèle pour les salles
 class SalleGlobale(models.Model):
@@ -68,4 +78,19 @@ class NoteGlobale(models.Model):
     def __str__(self):
         return f"Note de {self.id_etudiant} au cours {self.id_cours}"
 class IncidentsGlobaux(models.Model):
-    pass
+    id_incident = models.AutoField(primary_key=True)
+    id_salle = models.ForeignKey(SalleGlobale, on_delete=models.CASCADE)
+    date_signalement = models.DateField(error_messages = {"key": "Erreur dans la date -> Veuillez contacter les admins"})
+    statut = models.BooleanField()
+
+class Inscription_globales(models.Model):
+    id_inscription_globale = models.AutoField(primary_key=True)
+    id_etudiant = models.ForeignKey(Etudiant,on_delete=models.CASCADE)
+    id_cours = models.ForeignKey(CoursGlobal, on_delete=models.CASCADE)
+    statut = models.BooleanField()
+
+class Planning_globaux(models.Model):
+    id_planning = models.AutoField(primary_key=True)
+    id_cours = models.ForeignKey(CoursGlobal, on_delete=models.CASCADE)
+    departement = models.CharField()
+    horaire = models.DateField()

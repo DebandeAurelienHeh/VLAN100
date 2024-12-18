@@ -32,3 +32,4 @@ class NoteGlobaleViewSet(viewsets.ModelViewSet):
     serializer_class = NoteGlobaleSerializer
 
 class IncdientGlobaux(viewsets.ModelViewSet):
+    pass
