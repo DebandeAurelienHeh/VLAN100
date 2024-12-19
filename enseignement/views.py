@@ -1,25 +1,23 @@
-# Create your views here.
-"""
-Ici seront faites nos API
-"""
 from rest_framework import viewsets
-from .models import (
-    Etudiant, Professeur, SalleGlobale, CoursGlobal, Absence, NoteGlobale,
-    IncidentsGlobaux, InscriptionGlobale, PlanningGlobal
-)
-from .serializers import (
-    EtudiantSerializer, ProfesseurSerializer, SalleGlobaleSerializer,
-    CoursGlobalSerializer, AbsenceSerializer, NoteGlobaleSerializer,
-    IncidentsGlobauxSerializer, InscriptionGlobaleSerializer, PlanningGlobalSerializer
-)
+from rest_framework.filters import SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend
+from .models import *
+from .serializers import *
 
+# Exemple pour Etudiants
 class EtudiantViewSet(viewsets.ModelViewSet):
     queryset = Etudiant.objects.all()
     serializer_class = EtudiantSerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = ['departement', 'statut']  # Filtrage par département et statut
+    search_fields = ['nom', 'prenom', 'email']  # Recherche par nom, prénom ou email
 
+# Vues similaires pour les autres modèles
 class ProfesseurViewSet(viewsets.ModelViewSet):
     queryset = Professeur.objects.all()
     serializer_class = ProfesseurSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['nom', 'prenom', 'email']
 
 class SalleGlobaleViewSet(viewsets.ModelViewSet):
     queryset = SalleGlobale.objects.all()
@@ -32,6 +30,8 @@ class CoursGlobalViewSet(viewsets.ModelViewSet):
 class AbsenceViewSet(viewsets.ModelViewSet):
     queryset = Absence.objects.all()
     serializer_class = AbsenceSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id_etudiant', 'id_cours', 'date_absence']
 
 class NoteGlobaleViewSet(viewsets.ModelViewSet):
     queryset = NoteGlobale.objects.all()

@@ -39,7 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'enseignement',
     'vlan100',
+    "rest_framework",
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,20 +87,13 @@ WSGI_APPLICATION = 'vlan100.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_global',
-        'USER': 'user_global',
-        'PASSWORD': 'password_global',
-        'HOST': '10.10.',
+        'NAME': 'ecole_vlan100',
+        'USER': 'admins',
+        'PASSWORD': 'EvangelionEVA-01++',
+        'HOST': '10.10.213.19',
         'PORT': '3306',
     },
-    'local1': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_local1',
-        'USER': 'user_local1',
-        'PASSWORD': 'password_local1',
-        'HOST': 'mysql_local1',
-        'PORT': '3306',
-    }
+
 }
 
 
@@ -125,6 +127,11 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+INSTALLED_APPS += ['corsheaders']
+MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Static files (CSS, JavaScript, Images)
