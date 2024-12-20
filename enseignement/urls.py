@@ -15,4 +15,7 @@ router.register(r'plannings', PlanningGlobalViewSet, basename='planningglobal')
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    path('ldap-login/', ldap_login_view, name='ldap-login'),
+    path('api/restricted/', RestrictedAPIView.as_view(), name='restricted'),
+
 ]

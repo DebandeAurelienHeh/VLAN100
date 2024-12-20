@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+LDAP_SERVER = "ldap://your-ldap-server"  # Remplacez par l'URL de votre serveur LDAP
+LDAP_BASE_DN = "DC=example,DC=com"       # Remplacez par le DN de base de votre domaine
+LDAP_USER_DN = "CN=your-admin-user,DC=example,DC=com"  # Utilisateur de liaison
+LDAP_PASSWORD = "your-admin-password"   # Mot de passe
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +31,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+VLAN_MAPPING = {
+    "10.10.10.0/24": "Administration",
+    "10.10.20.0/24": "Enseignants",
+    "10.10.30.0/24": "Etudiants",
+    "10.10.40.0/24": "Services Generaux",
+    "10.10.100.0/24": "Commun",
+}
 
 # Application definition
 
@@ -88,11 +99,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ecole_vlan100',
-        'USER': 'admins',
-        'PASSWORD': 'EvangelionEVA-01++',
-        'HOST': '10.10.213.19',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
         'PORT': '3306',
     },
+
 
 }
 
@@ -142,4 +154,11 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
+
+#Section pour l'AD et pour
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DATABASE_ROUTERS = ['enseignement.db_router.MasterSlaveRouter']
+AUTHENTICATION_BACKENDS = [
+    'vlan100.auth_backends.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
