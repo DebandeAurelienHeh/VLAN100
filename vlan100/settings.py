@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+DATABASE_ROUTERS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'enseignement',
     'vlan100',
     "rest_framework",
+
 ]
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -88,9 +90,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ecole_vlan100',
-        'USER': 'admins',
-        'PASSWORD': 'EvangelionEVA-01++',
-        'HOST': '10.10.213.19',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
         'PORT': '3306',
     },
 
@@ -143,3 +145,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+VLAN_MAPPING = {
+    "10.10.10.0/24": "Administration",
+    "10.10.20.0/24": "Enseignants",
+    "10.10.30.0/24": "Etudiants",
+    "10.10.40.0/24": "Services Generaux",
+    "10.10.100.0/24": "Commun",
+}
